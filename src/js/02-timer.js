@@ -40,20 +40,19 @@ function startBtnEvent() {
   startBtn.disabled = true;
   inputEl.disabled = true;
 
-  const timeInterval = setInterval(updateTimer, 1000);
-
-  function updateTimer() {
+  const timeInterval = setInterval(() => {
     const today = new Date();
     const time = choosenDate - today;
 
     if (time <= 1000) {
       clearInterval(timeInterval);
+      return;
     }
     const data = convertMs(time);
     Object.entries(data).forEach(([name, value], idx) => {
       timer[idx].textContent = addLeadingZero(value);
     });
-  }
+  }, 1000);
 }
 
 function convertMs(ms) {
