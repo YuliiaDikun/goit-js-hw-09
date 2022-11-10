@@ -50,16 +50,15 @@ function startBtnEvent() {
     const today = new Date();
     const time = choosenDate - today;
 
+    if (time <= 1000) {
+      clearInterval(timeInterval);
+    }
     const dateObj = convertMs(time);
 
     dateEl.innerHTML = addLeadingZero(dateObj.days);
     hoursEl.innerHTML = addLeadingZero(dateObj.hours);
     minutesEl.innerHTML = addLeadingZero(dateObj.minutes);
     secondsEl.innerHTML = addLeadingZero(dateObj.seconds);
-
-    if (dateObj <= 0) {
-      clearInterval(timeInterval);
-    }
   }
 }
 
@@ -83,9 +82,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(n) {
-  if (n >= 0 && n < 10) {
-    return `0${n}`;
-  } else {
-    return n;
-  }
+  return n.toString().padStart(2, '0');
 }
