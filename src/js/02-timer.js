@@ -5,11 +5,6 @@ import Notiflix from 'notiflix';
 const inputEl = document.querySelector('input#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 
-const dateEl = document.querySelector('[data-days');
-const hoursEl = document.querySelector('[data-hours]');
-const minutesEl = document.querySelector('[data-minutes]');
-const secondsEl = document.querySelector('[data-seconds]');
-
 startBtn.disabled = true;
 
 let choosenDate;
@@ -53,12 +48,14 @@ function startBtnEvent() {
     if (time <= 1000) {
       clearInterval(timeInterval);
     }
-    const dateObj = convertMs(time);
+    const { days, hours, minutes, seconds } = convertMs(time);
 
-    dateEl.innerHTML = addLeadingZero(dateObj.days);
-    hoursEl.innerHTML = addLeadingZero(dateObj.hours);
-    minutesEl.innerHTML = addLeadingZero(dateObj.minutes);
-    secondsEl.innerHTML = addLeadingZero(dateObj.seconds);
+    document.querySelector('[data-days').innerHTML = addLeadingZero(days);
+    document.querySelector('[data-hours]').innerHTML = addLeadingZero(hours);
+    document.querySelector('[data-minutes]').innerHTML =
+      addLeadingZero(minutes);
+    document.querySelector('[data-seconds]').innerHTML =
+      addLeadingZero(seconds);
   }
 }
 
